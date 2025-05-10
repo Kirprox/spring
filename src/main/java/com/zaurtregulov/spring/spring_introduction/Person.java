@@ -1,6 +1,28 @@
 package com.zaurtregulov.spring.spring_introduction;
 
 public class Person {
+    private String surname;
+    private int age;
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        System.out.println("class person:set surname");
+        this.surname = surname;
+    }
+
+    public int getAge() {
+        System.out.println("");
+        return age;
+    }
+
+    public void setAge(int age) {
+        System.out.println("class person set age");
+        this.age = age;
+    }
+
     private Pet pet;
 
     public Person() {
