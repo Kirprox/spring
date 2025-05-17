@@ -1,5 +1,6 @@
 package com.zaurtregulov.aop.tests;
 
+import com.zaurtregulov.aop.Book;
 import com.zaurtregulov.aop.MyConfig;
 import com.zaurtregulov.aop.SchoolLibrary;
 import com.zaurtregulov.aop.UniLibrary;
@@ -10,8 +11,9 @@ public class Test1 {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(MyConfig.class);
         UniLibrary uniLibrary = context.getBean("uniLibrary", UniLibrary.class);
-//        uniLibrary.getBook();
-        uniLibrary.returnBook();
+        Book book = context.getBean("book", Book.class);
+        uniLibrary.getBook(book);
+//        uniLibrary.returnBook();
 //        uniLibrary.getMagazine();
 
 //        SchoolLibrary schoolLibrary = context.getBean("schoolLibrary", SchoolLibrary.class);
