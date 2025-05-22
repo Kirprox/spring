@@ -1,11 +1,11 @@
-package com.zaurtregulov.hibernate_test.tests;
+package com.zaurtregulov.hibernate_one_to_one.tests;
 
-import com.zaurtregulov.hibernate_test.entity.Employee;
+import com.zaurtregulov.hibernate_one_to_one.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class Test5 {
+public class Test2 {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -13,13 +13,16 @@ public class Test5 {
                 .buildSessionFactory();
         try {
             Session session = factory.getCurrentSession();
+            Employee emp = new Employee(
+                    "Oleg", "Sidorov", "HR", 700);
             session.beginTransaction();
-//            Employee emp = session.get(Employee.class,1);
-//            session.delete(emp);
-            session.createQuery("delete Employee " +
-                    "where firstName = 'Alexander'").executeUpdate();
-            session.getTransaction().commit();
+            session.save(emp);
 
+            int myId = emp.getId();
+
+            Employee employee = session.get(Employee.class, myId);
+            session.getTransaction().commit();
+            System.out.println(employee);
             System.out.println("Done!");
         } finally {
             factory.close();

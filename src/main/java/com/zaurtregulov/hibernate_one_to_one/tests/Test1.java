@@ -1,6 +1,6 @@
-package com.zaurtregulov.hibernate_test.tests;
+package com.zaurtregulov.hibernate_one_to_one.tests;
 
-import com.zaurtregulov.hibernate_test.entity.Employee;
+import com.zaurtregulov.hibernate_one_to_one.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

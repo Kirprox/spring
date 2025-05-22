@@ -1,5 +1,6 @@
-package com.zaurtregulov.hibernate_test.entity;
+package com.zaurtregulov.hibernate_one_to_many_bi.entity;
 
+import com.mysql.cj.util.DnsSrv;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,19 +14,30 @@ public class Employee {
     private String firstName;
     @Column(name = "surname")
     private String nurname;
-    @Column(name = "department")
-    private String department;
     @Column(name = "salary")
     private int salary;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
+    CascadeType.REFRESH, CascadeType.MERGE})
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String nurname, String department, int salary) {
+    public Employee(String firstName, String nurname, int salary) {
         this.firstName = firstName;
         this.nurname = nurname;
-        this.department = department;
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", nurname='" + nurname + '\'' +
+                ", salary=" + salary +
+                '}';
     }
 
     public int getId() {
@@ -52,14 +64,6 @@ public class Employee {
         this.nurname = nurname;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
     public int getSalary() {
         return salary;
     }
@@ -68,14 +72,11 @@ public class Employee {
         this.salary = salary;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{"
-                + "id=" + id
-                + ", name='" + firstName + '\''
-                + ", nurname='" + nurname + '\''
-                + ", department='" + department + '\''
-                + ", salary=" + salary
-                + '}';
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
